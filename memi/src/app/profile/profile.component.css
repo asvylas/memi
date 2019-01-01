@@ -1,0 +1,26 @@
+.flex-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+mat-card {
+  width: 100%;
+}
+mat-card img {
+  max-width: 100px;
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+@media only screen and (max-width: 600px) {
+  .flex-container {
+    display: inline-block;
+  }
+  mat-card {
+    width: auto;
+    margin: auto;
+  }
+}

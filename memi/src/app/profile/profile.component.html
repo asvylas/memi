@@ -1,0 +1,44 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div class="flex-container" *ngIf="!isLoading">
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar></div>
+      <mat-card-title>{{ userProfile.username }}</mat-card-title>
+      <mat-card-subtitle>#:{{ userProfile.userId }}</mat-card-subtitle>
+    </mat-card-header>
+    <img
+      mat-card-image
+      [src]="userProfile.profilePicturePath"
+      [alt]="userProfile.username"
+    />
+    <mat-card-content>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+        vitae dignissim dui. Morbi at ipsum mollis, sodales turpis non, auctor
+        erat. Integer rutrum at tellus a volutpat. Phasellus suscipit massa
+        enim, in tincidunt ligula suscipit a. Aenean vitae lacus gravida,
+        posuere neque at, rhoncus lorem. Vestibulum ante ipsum primis in
+        faucibus orci luctus et ultrices posuere cubilia Curae; Duis mollis,
+        lorem ac imperdiet laoreet, lectus nunc aliquet velit, vel semper dolor
+        erat in eros.
+      </p>
+      <mat-card-subtitle
+        >Member since:
+        {{ userProfile.created.substring(0, 10) }}</mat-card-subtitle
+      >
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+      <button mat-button>Edit Profile</button>
+    </mat-card-actions>
+  </mat-card>
+  <mat-divider></mat-divider>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Favorites:</mat-card-title>
+    </mat-card-header>
+    <div class="flex-container" *ngFor="let item of this.userProfile.favorites">
+      <mat-card>{{ item }} </mat-card>
+    </div>
+  </mat-card>
+</div>

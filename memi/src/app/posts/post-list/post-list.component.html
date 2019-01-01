@@ -1,0 +1,87 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-accordion multi="true" *ngIf="posts.length > 0 && !isLoading">
+  <mat-expansion-panel *ngFor="let post of posts">
+    <mat-expansion-panel-header>
+      <mat-panel-title> {{ post.title }} </mat-panel-title>
+      <mat-panel-description> {{ post.title }} </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="post-image">
+      <img [src]="post.imagePath" [alt]="post.title" />
+    </div>
+    <p>{{ post.content }}</p>
+    <mat-action-row *ngIf="userIsAuthenticated">
+      <button
+        *ngIf="userLikes.includes(post.id); else likeButton"
+        mat-button
+        color="primary"
+        matTooltip="Dislike this post."
+        aria-label="Button that displays a tooltip when focused or hovered over"
+        (click)="onLike(post.id)"
+      >
+        <mat-icon class="example-icon">thumb_up</mat-icon>
+      </button>
+      <ng-template #likeButton
+        ><button
+          mat-button
+          color="dark"
+          matTooltip="Like this post."
+          aria-label="Button that displays a tooltip when focused or hovered over"
+          (click)="onLike(post.id)"
+        >
+          <mat-icon class="example-icon">thumb_up</mat-icon>
+        </button></ng-template
+      >
+
+      <button
+        *ngIf="userFavorites.includes(post.id); else favoriteButton"
+        mat-button
+        color="primary"
+        matTooltip="Unfavorite this post."
+        aria-label="Button that displays a tooltip when focused or hovered over"
+        (click)="onFavorite(post.id)"
+      >
+        <mat-icon class="example-icon">favorite</mat-icon>
+      </button>
+
+      <ng-template #favoriteButton>
+        <button
+          mat-button
+          color="dark"
+          matTooltip="Favorite this post."
+          aria-label="Button that displays a tooltip when focused or hovered over"
+          (click)="onFavorite(post.id)"
+        >
+          <mat-icon class="example-icon">favorite</mat-icon>
+        </button>
+      </ng-template>
+
+      <a
+        *ngIf="userIsAuthenticated && userId == post.creator"
+        mat-button
+        [routerLink]="['/edit', post.id]"
+        matTooltip="Edit the post."
+        aria-label="Button that displays a tooltip when focused or hovered over"
+        ><mat-icon class="example-icon">create</mat-icon></a
+      >
+      <button
+        *ngIf="userIsAuthenticated && userId == post.creator"
+        mat-button
+        (click)="onDelete(post.id)"
+        matTooltip="Delete the post. This action cannot be reverted."
+        aria-label="Button that displays a tooltip when focused or hovered over"
+      >
+        <mat-icon class="example-icon">delete</mat-icon>
+      </button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<mat-paginator
+  [length]="totalPosts"
+  [pageSize]="postsPerPage"
+  [pageSizeOptions]="pageSizeOptions"
+  (page)="onChangedPage($event)"
+  *ngIf="posts.length > 0"
+></mat-paginator>
+<p class="info-text mat-body-1" *ngIf="posts.length <= 0 && !isLoading">
+  No posts added yet!
+</p>
