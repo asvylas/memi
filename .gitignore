@@ -2,6 +2,7 @@
 
 # Sensisitve
 /memiServer/nodemon.json
+/memiServer/images
 
 # compiled output
 /dist
