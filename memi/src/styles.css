@@ -3,3 +3,20 @@
 body {
   margin: 0;
 }
+
+body,
+html {
+  height: 100% !important;
+}
+
+div.background {
+  /* height: 100%;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(255, 244, 253, 1) 0%,
+    rgba(221, 221, 221, 1) 100%,
+    rgba(255, 255, 255, 1) 100%
+  ); */
+}

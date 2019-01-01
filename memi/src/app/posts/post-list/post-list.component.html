@@ -1,15 +1,15 @@
 <mat-spinner *ngIf="isLoading"></mat-spinner>
-<mat-accordion multi="true" *ngIf="posts.length > 0 && !isLoading">
-  <mat-expansion-panel *ngFor="let post of posts">
-    <mat-expansion-panel-header>
-      <mat-panel-title> {{ post.title }} </mat-panel-title>
-      <mat-panel-description> {{ post.title }} </mat-panel-description>
-    </mat-expansion-panel-header>
-    <div class="post-image">
-      <img [src]="post.imagePath" [alt]="post.title" />
-    </div>
-    <p>{{ post.content }}</p>
-    <mat-action-row *ngIf="userIsAuthenticated">
+<div *ngIf="posts.length > 0 && !isLoading" class="container">
+  <mat-card *ngFor="let post of posts" class="item-cards">
+    <mat-card-title>{{ post.title }} </mat-card-title>
+    <mat-card-content>
+      <div class="post-image">
+        <img [src]="post.imagePath" [alt]="post.title" />
+      </div>
+      <p>{{ post.content }}</p>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions *ngIf="userIsAuthenticated">
       <button
         *ngIf="userLikes.includes(post.id); else likeButton"
         mat-button
@@ -72,9 +72,10 @@
       >
         <mat-icon class="example-icon">delete</mat-icon>
       </button>
-    </mat-action-row>
-  </mat-expansion-panel>
-</mat-accordion>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
 <mat-paginator
   [length]="totalPosts"
   [pageSize]="postsPerPage"

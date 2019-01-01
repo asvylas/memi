@@ -8,7 +8,8 @@ const userSchema = mongoose.Schema({
   timeStamp: { type: Date, default: Date.now },
   profilePicturePath: {
     type: String,
-    default: "http://localhost:3000/images/M-defaultprofile.png"
+    default:
+      "http://memitest-env.bp7zpkxqzx.us-east-2.elasticbeanstalk.com/images/M-defaultprofile.png"
   },
   favorites: [{ type: mongoose.SchemaTypes.ObjectId, ref: "Post" }],
   likes: [{ type: mongoose.SchemaTypes.ObjectId, ref: "Post" }]
