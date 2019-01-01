@@ -30,8 +30,10 @@ export class AuthService {
       username: username
     };
     return this.http.post(BACKEND_URL + '/signup', authData).subscribe(
-      () => {
-        this.router.navigate(['/']);
+      result => {
+        if (result) {
+          this.login(email, password);
+        }
       },
       error => {
         this.authStatusListener.next(false);

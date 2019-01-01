@@ -3,9 +3,10 @@ import { Subscription } from 'rxjs';
 
 import { Post } from '../post.model';
 import { PostsService } from '../posts.service';
-import { PageEvent } from '@angular/material';
+import { PageEvent, MatDialog } from '@angular/material';
 import { AuthService } from '../../auth/auth.service';
 import { ProfileService } from 'src/app/profile/profile.service';
+import { SinglePostComponent } from 'src/app/singlepost/single-post.component';
 
 @Component({
   selector: 'app-post-list',
@@ -16,10 +17,10 @@ export class PostListComponent implements OnInit, OnDestroy {
   posts: Post[] = [];
   isLoading = false;
   totalPosts = 0;
-  postsPerPage = 10;
+  postsPerPage = 12;
   currentPage = 1;
   userId: string;
-  pageSizeOptions = [1, 2, 5, 10];
+  pageSizeOptions = [12, 24, 50, 100];
   userIsAuthenticated = false;
   userLikes: string[];
   userFavorites: string[];
@@ -31,7 +32,8 @@ export class PostListComponent implements OnInit, OnDestroy {
   constructor(
     public postsService: PostsService,
     public authService: AuthService,
-    public profileService: ProfileService
+    public profileService: ProfileService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -89,6 +91,11 @@ export class PostListComponent implements OnInit, OnDestroy {
         this.isLoading = false;
       }
     );
+  }
+  openDialog(post: Post) {
+    this.dialog.open(SinglePostComponent, {
+      data: { post: post }
+    });
   }
 
   ngOnDestroy() {

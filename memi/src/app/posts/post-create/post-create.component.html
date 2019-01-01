@@ -8,6 +8,7 @@
         name="title"
         formControlName="title"
         placeholder="Post Title"
+        [maxLength]="15"
       />
       <mat-error *ngIf="form.get('title').invalid"
         >Please enter a post title.</mat-error
@@ -27,6 +28,7 @@
         formControlName="content"
         name="content"
         placeholder="Post Content"
+        [maxLength]="1000"
       ></textarea>
       <mat-error *ngIf="form.get('content').invalid"
         >Please enter a post title.</mat-error

@@ -12,13 +12,15 @@ import { ErrorComponent } from './error/error.component';
 import { AngularMaterialModule } from './angular-material.module';
 import { PostsModule } from './posts/posts.module';
 import { ProfileComponent } from './profile/profile.component';
+import { SinglePostComponent } from './singlepost/single-post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ErrorComponent,
-    ProfileComponent
+    ProfileComponent,
+    SinglePostComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +35,6 @@ import { ProfileComponent } from './profile/profile.component';
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ErrorComponent]
+  entryComponents: [ErrorComponent, SinglePostComponent]
 })
 export class AppModule {}

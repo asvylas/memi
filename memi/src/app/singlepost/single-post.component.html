@@ -1,0 +1,32 @@
+<mat-card class="item-cards">
+  <div mat-dialog-title>{{ data.post.title }}</div>
+  <button
+    mat-button
+    color="primary"
+    (click)="onNoClick()"
+    matTooltip="View image in full resolution. This option opens a new tab in your browser."
+    aria-label="Button that displays a tooltip when focused or hovered over"
+    id="view-button"
+  >
+    View
+  </button>
+  <button
+    color="primary"
+    id="close-button"
+    mat-button
+    [mat-dialog-close]=""
+    matTooltip="Close this window."
+    aria-label="Button that displays a tooltip when focused or hovered over"
+    cdkFocusInitial
+  >
+    X
+  </button>
+  <mat-dialog-content>
+    <div class="post-image">
+      <img [src]="data.post.imagePath" [alt]="data.post.title" />
+    </div>
+    <div class="text-container">
+      <p>{{ data.post.content }}</p>
+    </div>
+  </mat-dialog-content>
+</mat-card>

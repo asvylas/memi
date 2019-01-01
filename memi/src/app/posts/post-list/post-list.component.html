@@ -4,12 +4,16 @@
     <mat-card-title>{{ post.title }} </mat-card-title>
     <mat-card-content>
       <div class="post-image">
-        <img [src]="post.imagePath" [alt]="post.title" />
+        <img
+          [src]="post.imagePath"
+          (click)="openDialog(post)"
+          [alt]="post.title"
+        />
       </div>
-      <p>{{ post.content }}</p>
     </mat-card-content>
-    <mat-divider></mat-divider>
+
     <mat-card-actions *ngIf="userIsAuthenticated">
+      <mat-divider></mat-divider>
       <button
         *ngIf="userLikes.includes(post.id); else likeButton"
         mat-button
@@ -63,6 +67,7 @@
         aria-label="Button that displays a tooltip when focused or hovered over"
         ><mat-icon class="example-icon">create</mat-icon></a
       >
+
       <button
         *ngIf="userIsAuthenticated && userId == post.creator"
         mat-button
